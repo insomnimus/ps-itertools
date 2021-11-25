@@ -1,0 +1,5 @@
+/bin
+/obj
+_*
+*.exe
+/Itertools
