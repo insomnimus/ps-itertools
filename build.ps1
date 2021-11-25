@@ -19,10 +19,10 @@ function build-project($cfg = "debug", $out) {
 }
 
 function copy-manifest($out) {
-	copy-item -force -recurse "$PSScriptRoot\module\*" $out
+	copy-item -force -recurse "$PSScriptRoot/module/*" $out
 }
 
-$out = "$PSScriptRoot\Itertools"
+$out = "$PSScriptRoot/Itertools"
 
 if(test-path -pathType container $out) {
 	remove-item -recurse $out
