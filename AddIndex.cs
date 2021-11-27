@@ -10,22 +10,33 @@ namespace Itertools {
 			Mandatory = true,
 			Position = 0,
 			ValueFromPipeline = true,
+			HelpMessage = "The input from the pipeline.",
 			ValueFromPipelineByPropertyName = true)]
-		public Object Item { get; set; }
-		private int CurrentIndex { get; set; } = 0;
+		public Object Input;
+		[Parameter(
+		HelpMessage = "The starting index."
+		)]
+		public int StartingIndex = 0;
+		[Parameter(
+		HelpMessage = "the value that will be added to the current index each iteration."
+		)]
+		public int Step = 1;
 
-		// This method will be called for each input received from the pipeline to this cmdlet; if no input is received, this method is not called
 		protected override void ProcessRecord() {
 			WriteObject(new IndexEntry {
-				Index = CurrentIndex,
-				Item = Item
+				Index = StartingIndex,
+				Item = Input
 			});
-			CurrentIndex++;
+			StartingIndex += Step;
 		}
 	}
 
 	public class IndexEntry {
-		public int Index { get; set; }
-		public Object Item { get; set; }
+		public int Index;
+		public Object Item;
+
+		public override string ToString() {
+			return $"{Index} - {Item}";
+		}
 	}
 }
