@@ -4,15 +4,24 @@ using System.Management.Automation.Runspaces;
 using System.Collections.Generic;
 
 namespace Itertools {
-	[Cmdlet(VerbsDiagnostic.Test, "All")]
+	[Cmdlet(VerbsDiagnostic.Test, "Any", DefaultParameterSetName = "script")]
 	[OutputType(typeof(bool))]
-	public class TestAllCmd: PSCmdlet {
+	public class TestAnyCmd: PSCmdlet {
 		[Parameter(
+		ParameterSetName = "script",
 		Mandatory = true,
 		Position = 0,
 		HelpMessage = "A predicate that evaluates to a bool."
 		)]
 		public ScriptBlock Predicate;
+		[Parameter(
+		ParameterSetName = "eq",
+		Mandatory = true,
+		Position = 0,
+		HelpMessage = "Test that any value from the pipeline is equal to this one."
+		)]
+		public Object Value;
+
 		[Parameter(
 			Mandatory = true,
 			Position = 1,
@@ -25,19 +34,24 @@ namespace Itertools {
 
 		protected override void ProcessRecord() {
 			if (!stopped) {
-				var vars = new List<PSVariable>(){
+				if (Predicate != null) {
+					var vars = new List<PSVariable>(){
 					new PSVariable("_", Input)
 				};
-				var result = Predicate.InvokeWithContext(null, vars);
-				if (result == null || result.Count == 0 || !result[result.Count - 1].Equals(true)) {
+					var result = Predicate.InvokeWithContext(null, vars);
+					if (result != null && result.Count != 0 && result[result.Count - 1].Equals(true)) {
+						stopped = true;
+						WriteObject(true);
+					}
+				} else if (Input.Equals(Value)) {
+					WriteObject(true);
 					stopped = true;
-					WriteObject(false);
 				}
 			}
 		}
 
 		protected override void EndProcessing() {
-			if (!stopped) WriteObject(true);
+			if (!stopped) WriteObject(false);
 		}
 	}
 }
