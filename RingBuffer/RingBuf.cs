@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace Itertools.RingBuffer {
 	public class RingBuf<T>: IEnumerable<T> {
-		public int Capacity { get; private set; }
+		public long Capacity { get; private set; }
 		// Head is always where the element should be written.
 		// If tail == head the buffer is empty.
-		private int head = 0;
-		private int tail = 0;
+		private long head = 0;
+		private long tail = 0;
 		public int Count => buf.Count;
 		private List<T> buf;
 
@@ -25,8 +25,7 @@ namespace Itertools.RingBuffer {
 			if (cap <= 0) {
 				throw new Exception("the value for capacity must be above 0");
 			}
-			Capacity = cap;
-			// Do not pre-allocate.
+			Capacity = (long)cap;
 			buf = new List<T>() { };
 		}
 
@@ -34,11 +33,11 @@ namespace Itertools.RingBuffer {
 			if (index > Count || index < 0) {
 				throw new IndexOutOfRangeException($"the index is {index} but the length is {Count}");
 			} else {
-				var n = tail + index;
+				long n = tail + index;
 				if (n >= Count) {
 					n -= Count;
 				}
-				return n;
+				return (int)n;
 			}
 		}
 
@@ -46,7 +45,7 @@ namespace Itertools.RingBuffer {
 			if (Count < Capacity) {
 				buf.Add(item);
 			} else {
-				buf[head] = item;
+				buf[(int)head] = item;
 				tail++;
 				if (tail >= Capacity) {
 					tail = 0;

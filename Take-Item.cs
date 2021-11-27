@@ -4,20 +4,20 @@ using System.Collections.Generic;
 using Itertools.RingBuffer;
 
 namespace Itertools {
-	[Cmdlet(VerbsCommon.Skip, "Item", DefaultParameterSetName = "number")]
+	[Cmdlet("Take", "Item", DefaultParameterSetName = "number")]
 	[OutputType(typeof(Object))]
-	public class SkipItemCmd: PSCmdlet {
+	public class TakeItemCmd: PSCmdlet {
 		[Parameter(
 		ParameterSetName = "number",
 Mandatory = true,
 Position = 0,
-HelpMessage = "How many items to skip."
+HelpMessage = "How many items to take."
 )]
 		[ValidateRange(0, int.MaxValue - 1)]
 		public int N;
 		[Parameter(
 		ParameterSetName = "number",
-		HelpMessage = "Skip last N items instead."
+		HelpMessage = "Take last N items instead."
 		)]
 		public SwitchParameter Last;
 
@@ -25,7 +25,7 @@ HelpMessage = "How many items to skip."
 		ParameterSetName = "script",
 		Mandatory = true,
 		Position = 0,
-		HelpMessage = "Skip items while this script block evaluates to true."
+		HelpMessage = "Take items while this script block evaluates to true."
 		)]
 		public ScriptBlock While;
 
@@ -36,8 +36,7 @@ HelpMessage = "How many items to skip."
 		public Object Input;
 
 		private bool wLastVal = true;
-		private int nSkipped = 0;
-		// private List<Object> items;
+		private int nTaken = 0;
 		private RingBuf<Object> lastItems;
 
 		protected override void BeginProcessing() {
@@ -61,24 +60,26 @@ HelpMessage = "How many items to skip."
 				};
 				var result = While.InvokeWithContext(null, vars);
 				wLastVal = result != null && result.Count != 0 && result[result.Count - 1].Equals(true);
-				if (!wLastVal) {
+				if (wLastVal) {
 					WriteObject(Input);
 				}
-			} else {
-				WriteObject(Input);
 			}
 		}
 
 		private void processN() {
 			if (Last && N > 0) {
-				if (lastItems.Count == N) {
-					WriteObject(lastItems[0]);
-				}
 				lastItems.Push(Input);
-			} else if (nSkipped < N) {
-				nSkipped++;
-			} else {
+			} else if (nTaken < N) {
+				nTaken++;
 				WriteObject(Input);
+			}
+		}
+
+		protected override void EndProcessing() {
+			if (Last && N > 0) {
+				foreach (var x in lastItems) {
+					WriteObject(x);
+				}
 			}
 		}
 	}
