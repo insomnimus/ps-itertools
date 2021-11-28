@@ -1,6 +1,7 @@
 param(
 	[switch]$release,
-	[switch]$readme
+	[switch]$readme,
+	[switch]$docs
 )
 
 function starts-with-space($s) {
@@ -44,6 +45,6 @@ if($code -eq 0) {
 	echo "built the module into $out"
 }
 
-if($readme) {
-	&"$PSScriptRoot/gen-repodocs.md" -readme
+if($readme -or $docs) {
+	&"$PSScriptRoot/gen-repodocs.ps1" -readme:$readme -docs:$docs
 }

@@ -18,7 +18,8 @@ import-module ./Itertools
 ```
 
 # Documentation
-See [here](documentation.md) for the every cmdlet in one page.
+See [here](documentation.md) for every cmdlet in one page.
+
 See [here](docs/) to view the cmdlets separately.
 
 # Commands Overview
