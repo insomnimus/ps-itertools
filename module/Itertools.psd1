@@ -10,7 +10,7 @@ Description = "A collection of iterator adaptors for PowerShell pipelines."
 # FunctionsToExport = "*"
 CmdletsToExport = "*"
 VariablesToExport = @()
-AliasesToExport = @()
+AliasesToExport = "*"
 
 NestedModules = @("Itertools-Scripts")
 # FileList = @()

@@ -23,13 +23,9 @@ Zips items from the pipe with the items in a collection.
 ## EXAMPLES
 
 ### Example 1
-This example maps numbers from 1 to 10 with numbers from 10 to 1
-
-```powershell
+```
 PS C:\> 1..10 | Join-Pipe (10..1)
-```
 
-```
 Left Right
 ---- -----
    1    10
@@ -57,7 +53,7 @@ Aliases:
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
@@ -82,11 +78,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Object
-
 ## OUTPUTS
 
 ### Itertools.Zip
-
 ## NOTES
 
 ## RELATED LINKS

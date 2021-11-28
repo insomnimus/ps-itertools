@@ -39,6 +39,7 @@ HelpMessage = "How many items to take."
 		private int nTaken = 0;
 		private RingBuf<Object> lastItems;
 
+
 		protected override void BeginProcessing() {
 			if (While == null && Last && N > 0) {
 				lastItems = new RingBuf<Object>(N);

@@ -5,49 +5,33 @@ online version:
 schema: 2.0.0
 ---
 
-# Join-Pipe
+# Chain-Pipe
 
 ## SYNOPSIS
-Zips items from the pipe with the items in a collection.
+Adds a collection of items to the end of the current pipeline.
 
 ## SYNTAX
 
 ```
-Join-Pipe [-Input] <Object> [-RightValues] <System.Collections.Generic.List`1[System.Object]>
- [<CommonParameters>]
+Chain-Pipe [-Values] <System.Collections.Generic.List`1[System.Object]> [-Input] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Zips items from the pipe with the items in a collection.
+Adds a collection of items to the end of the current pipeline.
 
 ## EXAMPLES
 
 ### Example 1
-This example maps numbers from 1 to 10 with numbers from 10 to 1
-
-```powershell
-PS C:\> 1..10 | Join-Pipe (10..1)
 ```
+PS C:\> "a".."z" | Chain-Pipe ("A".."Z") | Join-String
 
-```
-Left Right
----- -----
-   1    10
-   2     9
-   3     8
-   4     7
-   5     6
-   6     5
-   7     4
-   8     3
-   9     2
-  10     1
+abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 ```
 
 ## PARAMETERS
 
 ### -Input
-{{ Fill Input Description }}
+The input from the pipeline.
 
 ```yaml
 Type: Object
@@ -61,8 +45,8 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -RightValues
-A collection to join with the current pipe.
+### -Values
+A collection of objects to chain at the end of this pipe.
 
 ```yaml
 Type: System.Collections.Generic.List`1[System.Object]
@@ -82,11 +66,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Object
-
 ## OUTPUTS
 
-### Itertools.Zip
-
+### System.Object
 ## NOTES
 
 ## RELATED LINKS

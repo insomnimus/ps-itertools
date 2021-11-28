@@ -10,7 +10,7 @@ namespace Itertools {
 			Mandatory = true,
 			Position = 1,
 			ValueFromPipeline = true,
-			ValueFromPipelineByPropertyName = true)]
+			HelpMessage = "The input from the pipeline.")]
 		public Object Input;
 		[Parameter(
 		Mandatory = true,

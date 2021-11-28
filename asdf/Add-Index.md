@@ -18,19 +18,15 @@ Add-Index [-Input] <Object> [-StartingIndex <Int32>] [-Step <Int32>] [<CommonPar
 
 ## DESCRIPTION
 Adds numbers to the items from the pipeline.
-The `StartingIndex` parameter specifies the starting number.
-The `Step` parameter specifies the number to add each iteration.
+The \`StartingIndex\` parameter specifies the starting number.
+The \`Step\` parameter specifies the number to add each iteration.
 
 ## EXAMPLES
 
 ### Example 1
-This example numbers the letters in the Latin alphabet starting from 1.
-
-```powershell
+```
 PS C:\> "A".."Z" | Add-Index -StartingIndex 1
-```
 
-```
 Index Item
 ----- ----
     1    A
@@ -114,11 +110,9 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## INPUTS
 
 ### System.Object
-
 ## OUTPUTS
 
 ### Itertools.IndexEntry
-
 ## NOTES
 
 ## RELATED LINKS
