@@ -150,7 +150,7 @@ Index Item
    25    Y
    26    Z</dev:code>
         <dev:remarks>
-          <maml:para></maml:para>
+          <maml:para>This example numbers the letters in the Latin alphabet starting from 1.</maml:para>
         </dev:remarks>
       </command:example>
     </command:examples>

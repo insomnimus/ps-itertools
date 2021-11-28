@@ -1,14 +1,13 @@
-alias all Test-All
-alias any Test-Any
-alias none Test-None
+Set-Alias all Test-All
+Set-Alias any Test-Any
+Set-Alias none Test-None
+Set-Alias zip Join-Pipe
+Set-Alias chain Chain-Pipe
+Set-Alias enumerate Add-Index
+Set-Alias aix Add-Index
 
-alias zip Join-Pipe
-alias chain Chain-Pipe
-alias enumerate Add-Index
-alias aix Add-Index
-
-alias skip Skip-Item
-alias take Take-Item
-alias alt Switch-Pipe
-alias intersperse Switch-Pipe
-alias swp Switch-Pipe
+Set-Alias skip Skip-Item
+Set-Alias take Take-Item
+Set-Alias alt Switch-Pipe
+Set-Alias intersperse Switch-Pipe
+Set-Alias swp Switch-Pipe

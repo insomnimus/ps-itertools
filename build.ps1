@@ -1,4 +1,7 @@
-param([switch]$release)
+param(
+	[switch]$release,
+	[switch]$readme
+)
 
 function starts-with-space($s) {
 	$s.length -eq 0 -or
@@ -39,4 +42,8 @@ $code = build-project $cfg $out
 if($code -eq 0) {
 	copy-manifest $out
 	echo "built the module into $out"
+}
+
+if($readme) {
+	&"$PSScriptRoot/gen-repodocs.md" -readme
 }

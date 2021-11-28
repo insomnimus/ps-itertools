@@ -16,3 +16,19 @@ cd ps-itertools
 # Import the module
 import-module ./Itertools
 ```
+
+# Documentation
+See [here](documentation.md) for the every cmdlet in one page.
+See [here](docs/) to view the cmdlets separately.
+
+# Commands Overview
+- `Add-Index`: Adds numbers to the items from the pipeline.
+- `Chain-Pipe`: Adds a collection of items to the end of the current pipeline.
+- `Join-Pipe`: Zips items from the pipe with the items in a collection.
+- `Skip-Item`: Skips items from the pipeline.
+- `Switch-Pipe`: Alternates between the pipe and a collection.
+- `Take-Item`: Takes items from the pipeline.
+- `Test-All`: Asserts that every item from the pipeline fits within a criteria.
+- `Test-Any`: Tests if any item from the pipeline fits within the criteria given.
+- `Test-None`: Tests if no item in the pipeline satisfies the criteria given.
+
