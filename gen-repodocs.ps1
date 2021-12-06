@@ -1,5 +1,5 @@
 param(
-[parameter(helpMessage = "Generate the readme file.")]
+	[parameter(helpMessage = "Generate the readme file.")]
 	[switch]$readme,
 	[parameter(helpMessage = "Generate the documentation.md file.")]
 	[switch]$docs
@@ -35,7 +35,7 @@ class Command {
 		} else {
 			""
 		}
-$s = @"
+		$s = @"
 ## $($this.name)
 $($this.description)
 $als
@@ -52,7 +52,7 @@ $($this.example.trim())
 
 import-module -scope local -disableNameChecking "$PSScriptRoot/Itertools"
 
-$mod=get-module itertools
+$mod = get-module itertools
 $cmdlets = $mod.exportedCmdlets.getEnumerator() | % { [Command]::new($_.value) }
 
 if($docs) {

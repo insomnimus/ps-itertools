@@ -4,9 +4,11 @@ param(
 	[switch]$docs
 )
 
+$ErrorActionPreference = "stop"
+
 function starts-with-space($s) {
 	$s.length -eq 0 -or
-	" `n`t`r".contains($s.chars(0))
+	[char]::IsWhitespace($s.chars(0))
 }
 
 function build-project($cfg = "debug", $out) {
@@ -16,10 +18,8 @@ function build-project($cfg = "debug", $out) {
 	}
 
 	$output | % {
-		write-host $_.replace("$PSScriptRoot\", "")
+		echo $_.replace("$PSScriptRoot\", "")
 	}
-
-	return $lastExitCode
 }
 
 function copy-manifest($out) {
