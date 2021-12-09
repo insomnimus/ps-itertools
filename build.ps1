@@ -38,9 +38,9 @@ $cfg = if($release) {
 	"debug"
 }
 
-$code = build-project $cfg $out
+build-project $cfg $out
 
-if($code -eq 0) {
+if($lastexitcode -eq 0) {
 	copy-manifest $out
 	echo "built the module into $out"
 }
