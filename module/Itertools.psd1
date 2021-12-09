@@ -5,6 +5,8 @@
 	Copyright = "Copyrighred under the terms of the MIT license."
 	Description = "A collection of iterator adaptors for PowerShell pipelines."
 
+	CompatiblePSEditions = @("Core")
+	PowerShellVersion = "7.0"
 	FunctionsToExport = "*"
 	CmdletsToExport = "*"
 	VariablesToExport = @()
