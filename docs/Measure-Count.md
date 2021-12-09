@@ -1,72 +1,64 @@
 ---
 external help file: Itertools.dll-Help.xml
-Module Name: Itertools
+Module Name: itertools
 online version:
 schema: 2.0.0
 ---
 
-# Join-Pipe
+# Measure-Count
 
 ## SYNOPSIS
-Zips items from the pipe with the items in a collection.
+Counts the number of items in a collection or the pipeline.
 
 ## SYNTAX
 
+### nopipe (Default)
 ```
-Join-Pipe [-Input] <Object> [-RightValues] <System.Collections.Generic.List`1[System.Object]>
- [<CommonParameters>]
+Measure-Count [-Items] <Object[]> [<CommonParameters>]
+```
+
+### pipe
+```
+Measure-Count [-InputObject] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Zips items from the pipe with the items in a collection.
+Counts the number of items in a collection or the pipeline.
 
 ## EXAMPLES
 
 ### Example 1
-This example maps numbers from 1 to 10 with numbers from 10 to 1
-
 ```powershell
-PS C:\> 1..10 | Join-Pipe (10..1)
-```
-
-```
-Left Right
----- -----
-   1    10
-   2     9
-   3     8
-   4     7
-   5     6
-   6     5
-   7     4
-   8     3
-   9     2
-  10     1
+PS C:\> 1..5 | Measure-Count
+5
+PS C:\> $arr = 1, 2, 3, 4, 5
+PS C:\> Measure-Count $arr
+5
 ```
 
 ## PARAMETERS
 
-### -Input
-Input from the pipeline.
+### -InputObject
+The pipeline object.
 
 ```yaml
 Type: Object
-Parameter Sets: (All)
+Parameter Sets: pipe
 Aliases:
 
 Required: True
-Position: 1
+Position: 0
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -RightValues
-A collection to join with the current pipe.
+### -Items
+A collection of items to count.
 
 ```yaml
-Type: System.Collections.Generic.List`1[System.Object]
-Parameter Sets: (All)
+Type: Object[]
+Parameter Sets: nopipe
 Aliases:
 
 Required: True
@@ -85,7 +77,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Itertools.Zip
+### System.UInt32
 
 ## NOTES
 

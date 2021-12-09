@@ -33,6 +33,7 @@ if(test-path -pathType container $out) {
 }
 
 $cfg = if($release) {
+	
 	"release"
 } else {
 	"debug"
@@ -46,5 +47,5 @@ if($lastexitcode -eq 0) {
 }
 
 if($readme -or $docs) {
-	&"$PSScriptRoot/gen-repodocs.ps1" -readme:$readme -docs:$docs
+	pwsh -noprofile -c "&'$PSScriptRoot/gen-repodocs.ps1' -readme:`$$readme -docs:`$$docs"
 }

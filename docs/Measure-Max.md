@@ -1,76 +1,70 @@
 ---
-external help file: Itertools.dll-Help.xml
-Module Name: Itertools
+external help file: Itertools.dll-help.xml
+Module Name: itertools
 online version:
 schema: 2.0.0
 ---
 
-# Join-Pipe
+# Measure-Max
 
 ## SYNOPSIS
-Zips items from the pipe with the items in a collection.
+Calculates the object with the maximum value.
 
 ## SYNTAX
 
+### pipe (Default)
 ```
-Join-Pipe [-Input] <Object> [-RightValues] <System.Collections.Generic.List`1[System.Object]>
- [<CommonParameters>]
+Measure-Max -InputObject <Object> [<CommonParameters>]
+```
+
+### nopipe
+```
+Measure-Max -Items <Object[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Zips items from the pipe with the items in a collection.
+Calculates the object with the highest value.
 
 ## EXAMPLES
 
 ### Example 1
-This example maps numbers from 1 to 10 with numbers from 10 to 1
-
 ```powershell
-PS C:\> 1..10 | Join-Pipe (10..1)
-```
-
-```
-Left Right
----- -----
-   1    10
-   2     9
-   3     8
-   4     7
-   5     6
-   6     5
-   7     4
-   8     3
-   9     2
-  10     1
+PS C:\> $arr = 1,5,9,2,3,4
+PS C:\> Measure-Max $arr
+9
+PS C:\> $arr | Measure-Max
+9
+PS C:\> Measure-Max a b c d e f g
+g
 ```
 
 ## PARAMETERS
 
-### -Input
-Input from the pipeline.
+### -InputObject
+The pipeline object.
 
 ```yaml
 Type: Object
-Parameter Sets: (All)
+Parameter Sets: pipe
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -RightValues
-A collection to join with the current pipe.
+### -Items
+A collection of objects.
 
 ```yaml
-Type: System.Collections.Generic.List`1[System.Object]
-Parameter Sets: (All)
+Type: Object[]
+Parameter Sets: nopipe
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -83,10 +77,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ### System.Object
 
+### System.Object[]
+
 ## OUTPUTS
 
-### Itertools.Zip
-
+### System.Object
 ## NOTES
 
 ## RELATED LINKS

@@ -73,6 +73,52 @@ Left Right
   10     1
 ```
 
+## Measure-Count
+Counts the number of items in a collection or the pipeline.
+### Aliases
+-  `len`
+
+### Examples
+```powershell
+PS C:\> 1..5 | Measure-Count
+5
+PS C:\> $arr = 1, 2, 3, 4, 5
+PS C:\> Measure-Count $arr
+5
+```
+
+## Measure-Max
+Calculates the object with the highest value.
+### Aliases
+-  `max`
+
+### Examples
+```powershell
+PS C:\> $arr = 1,5,9,2,3,4
+PS C:\> Measure-Max $arr
+9
+PS C:\> $arr | Measure-Max
+9
+PS C:\> Measure-Max a b c d e f g
+g
+```
+
+## Measure-Min
+Calculates the object with the lowest value in a collection or the pipeline.
+### Aliases
+-  `min`
+
+### Examples
+```powershell
+PS C:\> $arr = 5,2,3,1,-1,0
+PS C:\> Measure-Min $arr
+-1
+PS C:\> 1..5 | Measure-Min
+1
+PS C:\> Measure-Min e f g a b
+a
+```
+
 ## Skip-Item
 Skips items from the pipeline.
 ### Aliases
@@ -99,7 +145,6 @@ PS C:\> 1..20 | Skip-Item { "$_".length -ne 2 }
 Alternates between the current pipe and a provided collection. By default, items will be taken from each side 1 by 1. First item taken is always from the pipe. The `-Left` and `-Right` parameters specify how many items to take from the respective sources in each alternation. If the `-DiscardRest` flag is set, no value will be produced after an alternation produces incomplete values (e.g a source runs out of items/ it doesn't have enough items to produce).
 ### Aliases
 -  `alt`
--  `intersperse`
 -  `swp`
 
 ### Examples

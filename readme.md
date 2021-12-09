@@ -26,6 +26,9 @@ See [here](docs/) to view the cmdlets separately.
 - `Add-Index`: Adds numbers to the items from the pipeline.
 - `Chain-Pipe`: Adds a collection of items to the end of the current pipeline.
 - `Join-Pipe`: Zips items from the pipe with the items in a collection.
+- `Measure-Count`: Counts the number of items in a collection or the pipeline.
+- `Measure-Max`: Calcualtes the object with the maximum value.
+- `Measure-Min`: Calculates the object with the lowest value.
 - `Skip-Item`: Skips items from the pipeline.
 - `Switch-Pipe`: Alternates between the pipe and a collection.
 - `Take-Item`: Takes items from the pipeline.
