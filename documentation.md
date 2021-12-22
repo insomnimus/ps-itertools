@@ -1,43 +1,3 @@
-## Test-All
-Tests if all items from the pipeline satisfy a predicate.
-### Aliases
--  `all`
-
-### Examples
-```powershell
-$evens = 0, 2, 4, 6, 8, 10
-$evens | Test-All { $_ % 2 -eq 0 }
-True
-
-$ones = 1, 1, 1, 1, 1, 1
-$ones | Test-All 1
-True
-```
-
-## Test-Any
-Tests if any item from the pipeline satisfies a predicate.
-### Aliases
--  `any`
-
-### Examples
-```powershell
-23..66 | Test-Any 50
-True
-32..66 | Test-Any { $_ % 2 -eq 0 }
-True
-```
-
-## Measure-Count
-Calculates the number of items in the pipeline, ignoring their values.
-### Aliases
--  `len`
-
-### Examples
-```powershell
-1..50 | Measure-Count
-50
-```
-
 ## Add-Index
 Enumerates items from the pipeline.
 ### Aliases
@@ -55,81 +15,6 @@ Index Value
     2     c
     3     d
     4     e
-```
-
-## Skip-Item
-Skips items from the pipeline.
-### Aliases
--  `skip`
-
-### Examples
-```powershell
-1..10 | Skip-Item 5
-6
-7
-8
-9
-10
-
-1..10 | Skip-Item { $_ -ne 8 }
-8
-9
-10
-```
-
-## Take-Item
-Takes items from the pipeline, ignoring the rest. This is the opposite of Skip-Item.
-### Aliases
--  `take`
-
-### Examples
-```powershell
-1..50 | Take-Item -Last 3
-48
-49
-50
-1..50 | Take-Item 3
-1
-2
-3
-```
-
-## Measure-Max
-Finds the item with the highest value from the pipeline.
-### Aliases
--  `max`
-
-### Examples
-```powershell
-$nums = 1, -2, 50, 23, -10, 132
-$nums | Measure-Max
-132
-```
-
-## Measure-Min
-Finds the item with the lowest value in the pipeline.
-### Aliases
--  `min`
-
-### Examples
-```powershell
-$nums = -1, 23, 55, -12, 0, -150
-$nums | Measure-Min
--150
-```
-
-## Test-None
-Tests if no item from the pipeline satisfies a predicate.
-### Aliases
--  `none`
-
-### Examples
-```powershell
-"a".."z" | Test-None "b"
-False
-
-1..50 | Test-None { $_ -gt 100 }
-True
 ```
 
 ## Chain-Pipe
@@ -187,6 +72,61 @@ Left Right
    5    25
 ```
 
+## Measure-Count
+Calculates the number of items in the pipeline, ignoring their values.
+### Aliases
+-  `len`
+
+### Examples
+```powershell
+1..50 | Measure-Count
+50
+```
+
+## Measure-Max
+Finds the item with the highest value from the pipeline.
+### Aliases
+-  `max`
+
+### Examples
+```powershell
+$nums = 1, -2, 50, 23, -10, 132
+$nums | Measure-Max
+132
+```
+
+## Measure-Min
+Finds the item with the lowest value in the pipeline.
+### Aliases
+-  `min`
+
+### Examples
+```powershell
+$nums = -1, 23, 55, -12, 0, -150
+$nums | Measure-Min
+-150
+```
+
+## Skip-Item
+Skips items from the pipeline.
+### Aliases
+-  `skip`
+
+### Examples
+```powershell
+1..10 | Skip-Item 5
+6
+7
+8
+9
+10
+
+1..10 | Skip-Item { $_ -ne 8 }
+8
+9
+10
+```
+
 ## Switch-Pipe
 Alternates between the pipeline and a collection.
 ### Aliases
@@ -204,4 +144,64 @@ left 2
 right 2
 left 3
 right 3
+```
+
+## Take-Item
+Takes items from the pipeline, ignoring the rest. This is the opposite of Skip-Item.
+### Aliases
+-  `take`
+
+### Examples
+```powershell
+1..50 | Take-Item -Last 3
+48
+49
+50
+1..50 | Take-Item 3
+1
+2
+3
+```
+
+## Test-All
+Tests if all items from the pipeline satisfy a predicate.
+### Aliases
+-  `all`
+
+### Examples
+```powershell
+$evens = 0, 2, 4, 6, 8, 10
+$evens | Test-All { $_ % 2 -eq 0 }
+True
+
+$ones = 1, 1, 1, 1, 1, 1
+$ones | Test-All 1
+True
+```
+
+## Test-Any
+Tests if any item from the pipeline satisfies a predicate.
+### Aliases
+-  `any`
+
+### Examples
+```powershell
+23..66 | Test-Any 50
+True
+32..66 | Test-Any { $_ % 2 -eq 0 }
+True
+```
+
+## Test-None
+Tests if no item from the pipeline satisfies a predicate.
+### Aliases
+-  `none`
+
+### Examples
+```powershell
+"a".."z" | Test-None "b"
+False
+
+1..50 | Test-None { $_ -gt 100 }
+True
 ```
