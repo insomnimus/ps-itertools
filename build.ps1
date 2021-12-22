@@ -33,7 +33,7 @@ if(test-path -pathType container $out) {
 }
 
 $cfg = if($release) {
-	
+
 	"release"
 } else {
 	"debug"

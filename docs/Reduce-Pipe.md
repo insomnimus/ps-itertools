@@ -5,66 +5,41 @@ online version:
 schema: 2.0.0
 ---
 
-# Take-Item
+# Fold-Pipe
 
 ## SYNOPSIS
-Takes items from the pipeline.
+Applies a reducing operation to every item in the pipeline, yielding a single value.
 
 ## SYNTAX
 
-### number (Default)
 ```
-Take-Item [-N] <Int32> [-Last] -Input <Object> [<CommonParameters>]
-```
-
-### script
-```
-Take-Item [-While] <ScriptBlock> -Input <Object> [<CommonParameters>]
+Fold-Pipe -InputObject <Object> [-ScriptBlock] <ScriptBlock> [-InitialValue <Object>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Takes items from the pipeline, ignoring the rest.
-This is the opposite of Skip-Item.
+Applies an operation to each item in the pipeline, reducing it down to a single value.
+This is the equivalent of a flatmap / fold.
+
+The script block gets to access the pipeline item with the $_ variable and the result of the previous call as $__ (also set as $args[0])
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-1..50 | Take-Item -Last 3
-48
-49
-50
-1..50 | Take-Item 3
-1
-2
-3
+1..5 | Fold-Pipe { $_ * $__ }
+120
 ```
 
-These two examples take the last 3 and first 3 items from the pipeline, respectively.
+This example calculates the factorial of 5.
 
 ## PARAMETERS
 
-### -Input
-The input from the pipeline.
+### -InitialValue
+An optional initial value.
 
 ```yaml
 Type: Object
 Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -Last
-Take last N items instead.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: number
 Aliases:
 
 Required: False
@@ -74,27 +49,27 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -N
-How many items to take.
+### -InputObject
+The input object.
 
 ```yaml
-Type: Int32
-Parameter Sets: number
+Type: Object
+Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -While
-Take items while this script block evaluates to true.
+### -ScriptBlock
+A script block that takes 1 argument (the last item calculated) and the access to the pipeline ($_).
 
 ```yaml
 Type: ScriptBlock
-Parameter Sets: script
+Parameter Sets: (All)
 Aliases:
 
 Required: True

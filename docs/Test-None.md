@@ -8,42 +8,40 @@ schema: 2.0.0
 # Test-None
 
 ## SYNOPSIS
-Tests if no item in the pipeline satisfies the criteria given.
+Tests if no item from the pipeline satisfies a predicate.
 
 ## SYNTAX
 
 ### script (Default)
 ```
-Test-None [-Predicate] <ScriptBlock> [-Input] <Object> [<CommonParameters>]
+Test-None -InputObject <Object> [-Predicate] <ScriptBlock> [<CommonParameters>]
 ```
 
 ### eq
 ```
-Test-None [-Value] <Object> [-Input] <Object> [<CommonParameters>]
+Test-None -InputObject <Object> [-Value] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Tests if no item in the pipeline satisfies the criteria given.
-The criteria can be a script block returning true/false or a value that will be checked for equality.
-The script block will not be executed after it returns false.
+Tests if no item from the pipeline satisfies a predicate.
 
 ## EXAMPLES
 
 ### Example 1
-This example checks if no number in the pipeline is negative.
-
 ```powershell
-PS C:\> -10..5 | Test-None { $_ -lt 0 }
+"a".."z" | Test-None "b"
+False
+
+1..50 | Test-None { $_ -gt 100 }
+True
 ```
 
-```
-False
-```
+<None>
 
 ## PARAMETERS
 
-### -Input
-The input from the pipeline.
+### -InputObject
+The input object.
 
 ```yaml
 Type: Object
@@ -51,9 +49,9 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

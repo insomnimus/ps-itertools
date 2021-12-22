@@ -8,46 +8,46 @@ schema: 2.0.0
 # Join-Pipe
 
 ## SYNOPSIS
-Zips items from the pipe with the items in a collection.
+Joins items from the pipeline with values from another collection or script.
 
 ## SYNTAX
 
+### script (Default)
 ```
-Join-Pipe [-Input] <Object> [-RightValues] <System.Collections.Generic.List`1[System.Object]>
- [<CommonParameters>]
+Join-Pipe -InputObject <Object> [-ScriptBlock] <ScriptBlock> [<CommonParameters>]
+```
+
+### collection
+```
+Join-Pipe -InputObject <Object> [-ValuesRight] <Object[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Zips items from the pipe with the items in a collection.
+Joins items from the pipeline with values from a collection or a script block.
+
+If the script block parameter is used, the script will have the $_ automatic variable set to the current pipeline object and the value it yields will be used as the right value.
 
 ## EXAMPLES
 
 ### Example 1
-This example maps numbers from 1 to 10 with numbers from 10 to 1
-
 ```powershell
-PS C:\> 1..10 | Join-Pipe (10..1)
-```
+1..5 | Join-Pipe {$_ *$_}
 
-```
 Left Right
 ---- -----
-   1    10
-   2     9
-   3     8
-   4     7
-   5     6
-   6     5
-   7     4
-   8     3
-   9     2
-  10     1
+   1     1
+   2     4
+   3     9
+   4    16
+   5    25
 ```
+
+This example generates the squares of the numbers from 1 to 5.
 
 ## PARAMETERS
 
-### -Input
-Input from the pipeline.
+### -InputObject
+The input object.
 
 ```yaml
 Type: Object
@@ -55,18 +55,33 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
-### -RightValues
+### -ScriptBlock
+A script block with access to the pipeline ($_) that will yield a value.
+
+```yaml
+Type: ScriptBlock
+Parameter Sets: script
+Aliases:
+
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ValuesRight
 A collection to join with the current pipe.
 
 ```yaml
-Type: System.Collections.Generic.List`1[System.Object]
-Parameter Sets: (All)
+Type: Object[]
+Parameter Sets: collection
 Aliases:
 
 Required: True

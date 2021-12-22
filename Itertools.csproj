@@ -1,14 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyName>Itertools</AssemblyName>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="PowerShellStandard.Library" Version="5.1.0-preview-06">
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
-
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<LangVersion>10.0</LangVersion>
+		<AssemblyName>Itertools</AssemblyName>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="PowerShellStandard.Library"
+		Version="5.1.0-preview-06">
+			<PrivateAssets>All</PrivateAssets>
+		</PackageReference>
+	</ItemGroup>
 </Project>

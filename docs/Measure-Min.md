@@ -1,6 +1,6 @@
 ---
-external help file: Itertools.dll-help.xml
-Module Name: itertools
+external help file: Itertools-help.xml
+Module Name: Itertools
 online version:
 schema: 2.0.0
 ---
@@ -8,7 +8,7 @@ schema: 2.0.0
 # Measure-Min
 
 ## SYNOPSIS
-Calculates the object with the lowest value.
+Finds the item with the lowest value in the pipeline.
 
 ## SYNTAX
 
@@ -23,20 +23,18 @@ Measure-Min -Items <Object[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Calculates the object with the lowest value in a collection or the pipeline.
+Finds the item with the lowest value in the pipeline.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> $arr = 5,2,3,1,-1,0
-PS C:\> Measure-Min $arr
--1
-PS C:\> 1..5 | Measure-Min
-1
-PS C:\> Measure-Min e f g a b
-a
+$nums = -1, 23, 55, -12, 0, -150
+$nums | Measure-Min
+-150
 ```
+
+This example calculates the lowest value from a list of numbers.
 
 ## PARAMETERS
 

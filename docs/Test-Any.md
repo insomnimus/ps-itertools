@@ -8,42 +8,39 @@ schema: 2.0.0
 # Test-Any
 
 ## SYNOPSIS
-Tests if any item from the pipeline fits within the criteria given.
+Tests if any item from the pipeline satisfies a predicate.
 
 ## SYNTAX
 
 ### script (Default)
 ```
-Test-Any [-Predicate] <ScriptBlock> [-Input] <Object> [<CommonParameters>]
+Test-Any -InputObject <Object> [-Predicate] <ScriptBlock> [<CommonParameters>]
 ```
 
 ### eq
 ```
-Test-Any [-Value] <Object> [-Input] <Object> [<CommonParameters>]
+Test-Any -InputObject <Object> [-Value] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Checks if any item from the pipeline satisfies the given criteria.
-The criteria can be a script block returning true/false or a value that will be checked for equality.
-The script block won't be executed after it returns true.
+Tests if any item from the pipeline satisfies a predicate.
 
 ## EXAMPLES
 
 ### Example 1
-This example tests if any item from the pipeline is divisible by 5.
-
 ```powershell
-PS C:\> 33..53 | Test-Any { $_ % 5 -eq 0 }
-```
-
-```
+23..66 | Test-Any 50
+True
+32..66 | Test-Any { $_ % 2 -eq 0 }
 True
 ```
 
+<None>
+
 ## PARAMETERS
 
-### -Input
-The input from the pipeline.
+### -InputObject
+The input object.
 
 ```yaml
 Type: Object
@@ -51,9 +48,9 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

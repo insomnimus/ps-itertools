@@ -14,12 +14,12 @@ Skips items from the pipeline.
 
 ### number (Default)
 ```
-Skip-Item [-N] <Int32> [-Last] -Input <Object> [<CommonParameters>]
+Skip-Item -InputObject <Object> [-N] <Int32> [-Last] [<CommonParameters>]
 ```
 
 ### script
 ```
-Skip-Item [-While] <ScriptBlock> -Input <Object> [<CommonParameters>]
+Skip-Item -InputObject <Object> [-While] <ScriptBlock> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,30 +28,27 @@ Skips items from the pipeline.
 ## EXAMPLES
 
 ### Example 1
-This example skips numbers until it encounters a 2 digit number.
-
 ```powershell
-PS C:\> 1..20 | Skip-Item { "$_".length -ne 2 }
+1..10 | Skip-Item 5
+6
+7
+8
+9
+10
+
+1..10 | Skip-Item { $_ -ne 8 }
+8
+9
+10
 ```
 
-```
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-```
+The first example skips first 5 items from the pipeline.
+The second example skips items from the pipeline while the script block evaluates to $true.
 
 ## PARAMETERS
 
-### -Input
-The input from the pipeline.
+### -InputObject
+The input object.
 
 ```yaml
 Type: Object
@@ -61,7 +58,7 @@ Aliases:
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 

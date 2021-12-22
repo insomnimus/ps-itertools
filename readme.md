@@ -23,16 +23,17 @@ See [here](documentation.md) for every cmdlet in one page.
 See [here](docs/) to view the cmdlets separately.
 
 # Commands Overview
-- `Add-Index`: Adds numbers to the items from the pipeline.
-- `Chain-Pipe`: Adds a collection of items to the end of the current pipeline.
-- `Join-Pipe`: Zips items from the pipe with the items in a collection.
-- `Measure-Count`: Counts the number of items in a collection or the pipeline.
-- `Measure-Max`: Calcualtes the object with the maximum value.
-- `Measure-Min`: Calculates the object with the lowest value.
+- `Test-All`: Tests if all items from the pipeline satisfy a predicate.
+- `Test-Any`: Tests if any item from the pipeline satisfies a predicate.
+- `Measure-Count`: Calculates the number of items in the pipeline, ignoring their values.
+- `Add-Index`: Enumerates items from the pipeline.
 - `Skip-Item`: Skips items from the pipeline.
-- `Switch-Pipe`: Alternates between the pipe and a collection.
 - `Take-Item`: Takes items from the pipeline.
-- `Test-All`: Asserts that every item from the pipeline fits within a criteria.
-- `Test-Any`: Tests if any item from the pipeline fits within the criteria given.
-- `Test-None`: Tests if no item in the pipeline satisfies the criteria given.
+- `Measure-Max`: Finds the item with the highest value from the pipeline.
+- `Measure-Min`: Finds the item with the lowest value in the pipeline.
+- `Test-None`: Tests if no item from the pipeline satisfies a predicate.
+- `Chain-Pipe`: Appends items at the end of the pipeline.
+- `Fold-Pipe`: Applies a reducing operation to every item in the pipeline, yielding a single value.
+- `Join-Pipe`: Joins items from the pipeline with values from another collection or script.
+- `Switch-Pipe`: Alternates between the pipeline and a collection.
 

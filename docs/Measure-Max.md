@@ -1,6 +1,6 @@
 ---
-external help file: Itertools.dll-help.xml
-Module Name: itertools
+external help file: Itertools-help.xml
+Module Name: Itertools
 online version:
 schema: 2.0.0
 ---
@@ -8,7 +8,7 @@ schema: 2.0.0
 # Measure-Max
 
 ## SYNOPSIS
-Calculates the object with the maximum value.
+Finds the item with the highest value from the pipeline.
 
 ## SYNTAX
 
@@ -23,20 +23,18 @@ Measure-Max -Items <Object[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Calculates the object with the highest value.
+Finds the item with the highest value from the pipeline.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> $arr = 1,5,9,2,3,4
-PS C:\> Measure-Max $arr
-9
-PS C:\> $arr | Measure-Max
-9
-PS C:\> Measure-Max a b c d e f g
-g
+$nums = 1, -2, 50, 23, -10, 132
+$nums | Measure-Max
+132
 ```
+
+This example calculates the highest value in a list of numbers.
 
 ## PARAMETERS
 

@@ -16,5 +16,4 @@
 		"Itertools.dll"
 		"comparison.ps1"
 	)
-	# FileList = @()
 }

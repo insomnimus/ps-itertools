@@ -8,42 +8,34 @@ schema: 2.0.0
 # Switch-Pipe
 
 ## SYNOPSIS
-Alternates between the pipe and a collection.
+Alternates between the pipeline and a collection.
 
 ## SYNTAX
 
 ```
-Switch-Pipe [-ValuesRight] <System.Collections.Generic.List`1[System.Object]> [-Left <Int32>] [-Right <Int32>]
- [-DiscardRest] [-Input] <Object> [<CommonParameters>]
+Switch-Pipe [-DiscardRest] -InputObject <Object> [-Values] <Object[]> [-Left <Int32>] [-Right <Int32>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Alternates between the current pipe and a provided collection.
-By default, items will be taken from each side 1 by 1.
-First item taken is always from the pipe.
-The `-Left` and `-Right` parameters specify how many items to take from the respective sources in each alternation.
-If the `-DiscardRest` flag is set, no value will be produced after an alternation produces incomplete values
-(e.g a source runs out of items/ it doesn't have enough items to produce).
+Alternates between the pipeline and a collection.
 
 ## EXAMPLES
 
 ### Example 1
-This example demonstrates a simple usage of this cmdlet.
-
 ```powershell
-PS C:\> $left = "left 1", "left 2", "left 3"
-PS C:\> $right = "right 1", "right2", "right3", "right4", "right5"
-PS C:\> $left | Switch-Pipe $right -Right 2 -DiscardRest
-```
-
-```
+$left = "left 1", "left 2", "left 3"
+$right = "right 1", "right 2", "right 3"
+$left | Switch-Pipe $right
 left 1
 right 1
-right2
 left 2
-right3
-right4
+right 2
+left 3
+right 3
 ```
+
+This example alternates between the left items and the right items.
 
 ## PARAMETERS
 
@@ -62,8 +54,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Input
-Any object from the pipeline.
+### -InputObject
+The input object.
 
 ```yaml
 Type: Object
@@ -71,9 +63,9 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
@@ -107,11 +99,11 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ValuesRight
+### -Values
 A collection to alternate with.
 
 ```yaml
-Type: System.Collections.Generic.List`1[System.Object]
+Type: Object[]
 Parameter Sets: (All)
 Aliases:
 

@@ -8,63 +8,38 @@ schema: 2.0.0
 # Add-Index
 
 ## SYNOPSIS
-Adds numbers to the items from the pipeline.
+Enumerates items from the pipeline.
 
 ## SYNTAX
 
 ```
-Add-Index [-Input] <Object> [-StartingIndex <Int32>] [-Step <Int32>] [<CommonParameters>]
+Add-Index -InputObject <Object> [-StartingIndex <Int32>] [-Step <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Adds numbers to the items from the pipeline.
-The `StartingIndex` parameter specifies the starting number.
-The `Step` parameter specifies the number to add each iteration.
+Enumerates items from the pipeline.
 
 ## EXAMPLES
 
 ### Example 1
-This example numbers the letters in the Latin alphabet starting from 1.
-
 ```powershell
-PS C:\> "A".."Z" | Add-Index -StartingIndex 1
+"a".."e" | Add-Index
+
+Index Value
+----- -----
+    0     a
+    1     b
+    2     c
+    3     d
+    4     e
 ```
 
-```
-Index Item
------ ----
-    1    A
-    2    B
-    3    C
-    4    D
-    5    E
-    6    F
-    7    G
-    8    H
-    9    I
-   10    J
-   11    K
-   12    L
-   13    M
-   14    N
-   15    O
-   16    P
-   17    Q
-   18    R
-   19    S
-   20    T
-   21    U
-   22    V
-   23    W
-   24    X
-   25    Y
-   26    Z
-```
+This example enumerates letters from 'a' to 'e'.
 
 ## PARAMETERS
 
-### -Input
-The input from the pipeline.
+### -InputObject
+The input object.
 
 ```yaml
 Type: Object
@@ -72,7 +47,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 0
+Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False

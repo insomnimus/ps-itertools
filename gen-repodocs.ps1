@@ -65,11 +65,11 @@ $($this.example.trim())
 import-module -scope local -disableNameChecking "$PSScriptRoot/Itertools"
 
 $mod = get-module itertools
-$commands = $mod.ExportedCmdlets.getEnumerator() `
-| % { [Command]::new([CmdletInfo] $_.value) } `
-| Chain-Pipe ($mod.ExportedFunctions.GetEnumerator() `
-	| % { [Command]::new([FunctionInfo] $_.value) }) `
-| sort-object -property name
+$commands = @(
+	$mod.ExportedCmdlets.getEnumerator() | % { [Command]::new([CmdletInfo] $_.value) }
+	$mod.ExportedFunctions.GetEnumerator() | % { [Command]::new([FunctionInfo] $_.value) }
+) `
+| sort-object { $_.name.split("-", 2)[-1] }
 
 if($docs) {
 	$gen = $commands | % { "$_" } | join-string -separator "`n`n"

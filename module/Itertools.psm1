@@ -14,3 +14,5 @@ Set-Alias swp Switch-Pipe
 Set-Alias len Measure-Count
 Set-Alias min Measure-Min
 Set-Alias max Measure-Max
+
+Set-Alias fold Fold-Pipe

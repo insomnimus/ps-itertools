@@ -1,6 +1,6 @@
 ---
 external help file: Itertools.dll-Help.xml
-Module Name: itertools
+Module Name: Itertools
 online version:
 schema: 2.0.0
 ---
@@ -8,7 +8,7 @@ schema: 2.0.0
 # Measure-Count
 
 ## SYNOPSIS
-Counts the number of items in a collection or the pipeline.
+Calculates the number of items in the pipeline, ignoring their values.
 
 ## SYNTAX
 
@@ -23,23 +23,22 @@ Measure-Count [-InputObject] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Counts the number of items in a collection or the pipeline.
+Calculates the number of items in the pipeline, ignoring their values.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> 1..5 | Measure-Count
-5
-PS C:\> $arr = 1, 2, 3, 4, 5
-PS C:\> Measure-Count $arr
-5
+1..50 | Measure-Count
+50
 ```
+
+This example counts the number of items in the pipeline.
 
 ## PARAMETERS
 
 ### -InputObject
-The pipeline object.
+The object frmo pipeline.
 
 ```yaml
 Type: Object

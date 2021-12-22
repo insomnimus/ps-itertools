@@ -8,46 +8,43 @@ schema: 2.0.0
 # Test-All
 
 ## SYNOPSIS
-Asserts that every item from the pipeline fits within a criteria.
+Tests if all items from the pipeline satisfy a predicate.
 
 ## SYNTAX
 
 ### script (Default)
 ```
-Test-All [-Predicate] <ScriptBlock> [-Input] <Object> [<CommonParameters>]
+Test-All -InputObject <Object> [-Predicate] <ScriptBlock> [<CommonParameters>]
 ```
 
 ### eq
 ```
-Test-All [-Value] <Object> [-Input] <Object> [<CommonParameters>]
+Test-All -InputObject <Object> [-Value] <Object> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Asserts that every item from the pipeline fits within a criteria.
-
-The criteria can be a script block returning true/false or a value that will be checked for equality.
+Tests if all items from the pipeline satisfy a predicate.
 
 ## EXAMPLES
 
 ### Example 1
-This example tests if every line in the text contains the word "banana" in it.
-
 ```powershell
-PS C:\> $text = "banana is good
->> banana is life
->> my brother was beaten badly with a banana wielding man"
->>
-PS C:\> $text.split("`n") | Test-All { $_.contains("banana") }
-```
+$evens = 0, 2, 4, 6, 8, 10
+$evens | Test-All { $_ % 2 -eq 0 }
+True
 
-```
+$ones = 1, 1, 1, 1, 1, 1
+$ones | Test-All 1
 True
 ```
 
+<None>
+
+
 ## PARAMETERS
 
-### -Input
-The input from the pipeline.
+### -InputObject
+The input object.
 
 ```yaml
 Type: Object
@@ -55,9 +52,9 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
